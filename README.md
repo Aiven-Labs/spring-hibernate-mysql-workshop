@@ -12,6 +12,11 @@ In this hands-on workshop, you'll learn how to connect your Spring Boot applicat
 
 ## Creating you MySQL Service 
 
+* Create your Aiven account by using this [link](https://go.aiven.io/signup-data-persist) 
+* Confirm your email and connect to the console. 
+* Create a new MySQL Service, choose `Free plan` , give it the name you want and hit "Create service". You can skip the 2 steps. 
+
+
 ### Create a new database
 
 On your MySQL service page, on the left side panel you can see a `Databases` button click on it, from there, on the main panel you will see a big blue button 'Create database', click it a create a new database named `cats`.

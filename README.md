@@ -31,9 +31,9 @@ Open the file `src/resources/application.properties` and replace the :
 
 ## Create your first `Entity`
 
-We are going to create our first entity, object that we will be persisting in the database. Create a new file named `Cat.java` in `src/main/java/io/aiven/dataworkshop/model` and add this content : 
+We are going to create our first entity, object that we will be persisting in the database. Create a new folder `model` under `src/main/java/io/aiven/dataworkshop` and then create a new file named `Cat.java` in `src/main/java/io/aiven/dataworkshop/model` and add this content : 
 
-```
+```java
 package io.aiven.dataworkshop.model;
 
 import jakarta.persistence.Entity;
@@ -86,7 +86,7 @@ Start the application to check that everything runs fine : `mvn spring-boot:run`
 
 Create a file name `CatRepository.java` in `src/main/java/io/aiven/dataworkshop` and add this content : 
 
-```
+```java
 package io.aiven.dataworkshop;
 
 import org.springframework.data.repository.JpaRepository;
@@ -103,7 +103,7 @@ public interface CatRepository extends JpaRepository<Cat, Integer> {
 
 Create a new file named `CatController.java` in `src/main/java/io/aiven/dataworkshop` and add this content : 
 
-```
+```java
 package io.aiven.dataworkshop;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -138,7 +138,7 @@ public class CatController {
 
 You can now start inserting and retrieving cats in the database ! Open a second terminal and try out the rest endpoints : 
 
-```
+```bash
 
 curl localhost:8080/cats -H 'Content-Type: application/json' -d '{"name" : "Scratch", "age" : 5}'
 curl localhost:8080/cats -H 'Content-Type: application/json' -d '{"name" : "Link", "age" : 4}'
@@ -150,7 +150,7 @@ curl localhost:8080/cats
 
 Let's add a endpoint to retrieve the cats by `id` , add this method to `CatController.java` : 
 
-```
+```java
 
  @GetMapping("/{id}")
     public Optional<Cat> getCatById(@PathVariable Integer id) {
@@ -161,7 +161,7 @@ Let's add a endpoint to retrieve the cats by `id` , add this method to `CatContr
 
 Stop and start the app, now you can search by `id` : 
 
-```
+```bash
 
 curl localhost:8080/cats -H 'Content-Type: application/json' -d '{"name" : "Scratch", "age" : 5}'
 curl localhost:8080/cats -H 'Content-Type: application/json' -d '{"name" : "Link", "age" : 4}'
@@ -173,7 +173,7 @@ curl localhost:8080/cats/1
 
 Let's assume to each cat has an owner and we want to reflect this in our application. Let's create a new entity named `Owner.java` in `src/main/java/io/aiven/dataworkshop/model` and this content : 
 
-```
+```java
 package io.aiven.dataworkshop.model;
 
 import jakarta.persistence.Entity;
@@ -212,7 +212,7 @@ public class Owner {
 
 Ok, now we need to create a relationship between the `Cat` and the `Owner` entity, let's modify the `Cat.java` by adding a new field and the getters and setters : 
 
-```
+```java
 @ManyToOne(cascade = CascadeType.PERSIST)
 Owner owner;
 
@@ -232,7 +232,7 @@ Stop the app and restart it, check the logs, you might see an exception but you 
 
 For simplicity, we will add a new rest endpoint that will have a harcoded `Owner` , modify your `CatController.java` and add this method : 
 
-```
+```java
 
 @PostMapping(path = "/addToOwner") 
 public Cat addNewCatToSebi(@RequestBody Cat cat) {
@@ -247,7 +247,7 @@ public Cat addNewCatToSebi(@RequestBody Cat cat) {
 
 Stop and start the application and run those curl commands : 
 
-```
+```bash
 
 curl localhost:8080/cats/addToOwner -H 'Content-Type: application/json' -d '{"name" : "Link", "age" : 4}'
 curl localhost:8080/cats/1
@@ -261,7 +261,7 @@ In the response, you should now see that an owner is attachde to the cat.
 
 Let's a `jpql` query to retrieve all the cats by owner id , modify the `CatRepository.java` interface and add this method signature : 
 
-```
+```java
 
 @Query("SELECT c FROM Cat c WHERE c.owner.id =?1")
 List<Cat> findCatsByOwner(Integer id);
@@ -272,7 +272,7 @@ Notice the syntax, it's really close to "vanilla" SQL but we manipulate objects 
 
 Add a new rest endpoint to your controller `CatController.java` : 
 
-```
+```java
 @GetMapping(path = "/owner/{id}")
 public List<Cat> findByOwner(@PathVariable Integer id) {
     return catRepository.findCatsByOwner(id);
@@ -282,7 +282,7 @@ public List<Cat> findByOwner(@PathVariable Integer id) {
 
 Stop and start the application and run those curl commands : 
 
-```
+```bash
 
 curl localhost:8080/cats/addToOwner -H 'Content-Type: application/json' -d '{"name" : "Link", "age" : 4}'
 curl localhost:8080/cats/owner/1

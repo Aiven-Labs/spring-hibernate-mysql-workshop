@@ -10,7 +10,7 @@ In this hands-on workshop, you'll learn how to connect your Spring Boot applicat
 * Aiven account
 * A Browser
 
-## Creating you MySQL Service 
+## Creating your MySQL Service 
 
 * Create your Aiven account by using this [link](https://go.aiven.io/signup-data-persist) 
 * Confirm your email and connect to the console. 
@@ -230,7 +230,7 @@ Stop the app and restart it, check the logs, you might see an exception but you 
 
 ## Create and persist a relation
 
-For simplicity, we will add a new rest endpoint that will have a harcoded `Owner` , modify your `CatController.java` and add this method : 
+For simplicity, we will add a new rest endpoint that will have a hardcoded `Owner` , modify your `CatController.java` and add this method : 
 
 ```java
 
@@ -254,7 +254,7 @@ curl localhost:8080/cats/1
 
 ```
 
-In the response, you should now see that an owner is attachde to the cat. 
+In the response, you should now see that an owner is attached to the cat. 
 
 
 ## Add a `@Query` using `jpql`

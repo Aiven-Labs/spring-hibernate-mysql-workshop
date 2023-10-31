@@ -23,7 +23,7 @@ On your MySQL service page, on the left side panel you can see a `Databases` but
 
 ## Connecting your Springboot application to MySQL
 
-Open the file `src/resources/application.properties` and replace the :
+Open the file `src/main/resources/application.properties` and replace the :
 
 * Host
 * Port

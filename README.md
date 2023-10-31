@@ -10,7 +10,7 @@ In this hands-on workshop, you'll learn how to connect your Spring Boot applicat
 * Aiven account
 * A Browser
 
-## Creating you MySQL Service 
+## Creating your MySQL Service 
 
 * Create your Aiven account by using this [link](https://go.aiven.io/signup-data-persist) 
 * Confirm your email and connect to the console. 

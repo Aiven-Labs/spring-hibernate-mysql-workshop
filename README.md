@@ -36,6 +36,7 @@ We are going to create our first entity, object that we will be persisting in th
 ```java
 package io.aiven.dataworkshop.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

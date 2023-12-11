@@ -106,6 +106,8 @@ Create a new file named `CatController.java` in `src/main/java/io/aiven/datawork
 ```java
 package io.aiven.dataworkshop;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

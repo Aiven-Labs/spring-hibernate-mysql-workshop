@@ -90,7 +90,11 @@ Create a file name `CatRepository.java` in `src/main/java/io/aiven/dataworkshop`
 ```java
 package io.aiven.dataworkshop;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
 import io.aiven.dataworkshop.model.Cat;
 
 public interface CatRepository extends JpaRepository<Cat, Integer> {
@@ -108,6 +112,7 @@ Create a new file named `CatController.java` in `src/main/java/io/aiven/datawork
 package io.aiven.dataworkshop;
 
 import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
